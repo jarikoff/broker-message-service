@@ -1,0 +1,17 @@
+{
+  "legacyWatch": true,
+  "ignore": [
+    ".git",
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "watch": [
+      "./index.ts",
+      "./config/config.ts",
+      "./config/default.yml",
+      "./src"
+  ],
+  "exec": "npm run start:debug",
+  "ext": "ts"
+}

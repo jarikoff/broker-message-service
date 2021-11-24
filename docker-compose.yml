@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  mobile-api:
+    hostname: "broker-message-receiver"
+    build:
+      context: .
+      dockerfile: ./docker/app.dockerfile
+      target: dev
+      args:
+        FILES_UID: ${FILES_UID}
+        FILES_GID: ${FILES_GID}
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: ${LOG_LEVEL}
+      APP_ENV: ${APP_ENV}
+      MAX_LOG_TRACE: ${MAX_LOG_TRACE}
+      APP_MAX_SIZE: ${APP_MAX_SIZE}
+    depends_on:
+      - rabbitmq
+    ports:
+      - ${NODE_PORT}:3050
+      - ${NODE_DEBUG_PORT}:9230
+    volumes:
+      - ./src:/app/src
+    networks:
+      mobile:
+        ipv4_address: ${NETWORK_PREFIX:-172.200}.0.2
+        aliases:
+          - broker.message.receiver.app
+
+  rabbitmq:
+    build:
+      context: ./docker
+      dockerfile: ./rabbitmq.dockerfile
+    image: rabbitmq:develop
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+    ports:
+      - ${RABBITMQ_MQTT_PORT}:1883
+      - ${RABBITMQ_AMQP_PORT}:5672
+      - ${RABBITMQ_MQTT_WEB_PORT}:15675
+      - ${RABBITMQ_MANAGE_PORT}:15672
+    networks:
+      mobile:
+        ipv4_address: ${NETWORK_PREFIX:-172.202}.0.5
+        aliases:
+          - rabbitmq.loc
+
+networks:
+  mobile:
+    ipam:
+      config:
+        - subnet: "${NETWORK_PREFIX:-172.200}.0.0/16"

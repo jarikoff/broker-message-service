@@ -1,0 +1,20 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "outDir": "./dist/",
+        "inlineSourceMap": true,
+        "noImplicitAny": false,
+        "allowJs": true,
+        "strict": false,
+        "esModuleInterop": false,
+    },
+    "include": [
+        "src/index.ts",
+        "config/config.ts",
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

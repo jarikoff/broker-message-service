@@ -1,0 +1,33 @@
+{
+  "name": "oop-labs-practise",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -p .",
+    "serve": "node -r source-map-support/register ./dist/index.js",
+    "lint": "run-s lint:*",
+    "lint:tsc": "tsc -p . --noEmit",
+    "lint:tslint": "tslint -p ."
+  },
+  "dependencies": {
+    "awilix": "^4.2.6",
+    "amqplib": "^0.7.1",
+    "stacktrace-parser": "^0.1.10",
+    "winston": "^3.2.1",
+    "ts-node": "^8.8.2",
+    "ts-node-dev": "^1.0.0-pre.62",
+    "tslint": "^6.1.1",
+    "config": "^3.2.6",
+    "typescript": "^3.8.3",
+    "@tsconfig/node14": "^1.0.1",
+    "fastest-validator": "^1.10.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.1",
+    "@types/amqplib": "^0.5.17",
+    "@types/async-retry": "^1.4.3",
+    "nodemon": "^2.0.3",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
+  }
+}

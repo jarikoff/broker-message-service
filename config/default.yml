@@ -1,0 +1,17 @@
+rabbit:
+  main:
+    username: "user"
+    password: "root"
+    host: "172.200.0.5"
+    port: 5672
+  services:
+    kazarma:
+      exchange: "client_topic"
+      queue: "client_actions_queue"
+      routing_key: "client.actions.*"
+
+proxies:
+  balance_add:
+    enabled: true
+  new_user:
+    enabled: true
