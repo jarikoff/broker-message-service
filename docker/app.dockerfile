@@ -7,12 +7,20 @@ RUN npm install
 
 COPY . .
 
+ARG test="false"
+RUN if [ "$test" == "true" ]; then npm run lint && npm run test -- --maxWorkers=1; fi
+
+CMD ["npm", "run", "dev"]
+
+
 FROM node:14-alpine AS builder
 WORKDIR /app
 
 COPY --from=dev /app /app
 
 RUN npm run build
+
+
 
 FROM node:14-alpine
 WORKDIR /app

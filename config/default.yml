@@ -2,11 +2,11 @@ rabbit:
   main:
     username: "user"
     password: "root"
-    host: "172.200.0.5"
+    host: "rabbitmq.loc"
     port: 5672
   services:
     kazarma:
-      exchange: "client_topic"
+      exchange: "amq.topic"
       queue: "client_actions_queue"
       routing_key: "client.actions.*"
 

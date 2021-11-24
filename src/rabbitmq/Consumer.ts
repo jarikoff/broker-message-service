@@ -75,12 +75,13 @@ export class Consumer implements ConsumerInterface {
 
         try {
             this.retriesCheck();
-            setTimeout(async () => await (await this.init(this.serviceConfig, this.parser)).consume(), 1000);
+            await (await this.init(this.serviceConfig, this.parser)).consume();
         } catch (err) {
             if (err instanceof InternalError && err.errorCode === ErrorCodes.RABBIT_RECONNECT_FAILED) {
                 err.renderError();
                 return;
             }
+            await new Promise(res => setTimeout(res, 1_000));
             await this.reconnect();
         }
     }
@@ -130,6 +131,7 @@ export class Consumer implements ConsumerInterface {
     }
 
     async init(config: RabbitServiceConfig, parser: RabbitMessageReceiverInterface): Promise<ConsumerInterface> {
+        this.logger.warning('trying to init')
         this.serviceConfig = config;
         this.parser = parser;
 
