@@ -7,10 +7,10 @@
         "noImplicitAny": false,
         "allowJs": true,
         "strict": false,
-        "esModuleInterop": false,
+        "esModuleInterop": false
     },
     "include": [
-        "src/index.ts",
+        "index.ts",
         "config/config.ts",
         "src/**/*"
     ],

@@ -1,8 +1,7 @@
-import { Logger } from '../../../logger/logger';
-import { ErrorManager } from '../../../services/helpers/ErrorManager';
-import { Result, ResultStatus } from '../Result';
+import { Logger } from '../logger/logger';
 import { ErrorCodes } from './ErrorCodes';
 import { ErrorDescription } from './ErrorDescription';
+import { ErrorManager } from './ErrorManager';
 
 export class InternalError extends Error {
     protected readonly logger: Logger;
@@ -28,8 +27,6 @@ export class InternalError extends Error {
             uiMessage = overriddenErrorDescription.uiMessage;
         }
 
-        this.logger.error(`${ errorDescription.logMessage } ${ overriddenErrorDescription?.logMessage || '' }`, this, errorDescription.sendToSentry);
-
-        return new Result(ResultStatus.Error, null, uiMessage, this.statusCode || 500, overriddenErrorCode || this.errorCode);
+        this.logger.error(`${ errorDescription.logMessage } ${ overriddenErrorDescription?.logMessage || '' }`, this);
     }
 }

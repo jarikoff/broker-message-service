@@ -1,6 +1,7 @@
 version: '3.7'
 services:
-  mobile-api:
+  broker-message-receiver:
+    tty: true
     hostname: "broker-message-receiver"
     build:
       context: .
@@ -23,7 +24,7 @@ services:
     volumes:
       - ./src:/app/src
     networks:
-      mobile:
+      broker-message-network:
         ipv4_address: ${NETWORK_PREFIX:-172.200}.0.2
         aliases:
           - broker.message.receiver.app
@@ -42,13 +43,13 @@ services:
       - ${RABBITMQ_MQTT_WEB_PORT}:15675
       - ${RABBITMQ_MANAGE_PORT}:15672
     networks:
-      mobile:
-        ipv4_address: ${NETWORK_PREFIX:-172.202}.0.5
+      broker-message-network:
+        ipv4_address: ${NETWORK_PREFIX:-172.200}.0.5
         aliases:
           - rabbitmq.loc
 
 networks:
-  mobile:
+  broker-message-network:
     ipam:
       config:
         - subnet: "${NETWORK_PREFIX:-172.200}.0.0/16"

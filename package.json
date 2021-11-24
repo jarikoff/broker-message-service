@@ -1,10 +1,11 @@
 {
-  "name": "oop-labs-practise",
-  "version": "0.0.0",
+  "name": "broker-message-receiver",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "rm -rf ./dist && tsc -p .",
     "serve": "node -r source-map-support/register ./dist/index.js",
+    "dev": "tsnd index.ts",
     "lint": "run-s lint:*",
     "lint:tsc": "tsc -p . --noEmit",
     "lint:tslint": "tslint -p ."

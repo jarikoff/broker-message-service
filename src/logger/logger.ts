@@ -29,7 +29,7 @@ export class Logger implements LoggerInterface {
         });
     }
 
-    public error(msg: string, err: Error, sendToSentry: boolean = true): void {
+    public error(msg: string, err: Error): void {
         this.logger.log({
             level: 'error',
             message: `${ new Date() } [${ this.tag }]: ${ msg }`,

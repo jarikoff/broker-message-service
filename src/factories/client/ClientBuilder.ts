@@ -11,9 +11,9 @@ export class ClientBuilder implements AssociativeBuilder {
             isEnabled: Config.get('proxies.balance_add.enabled'),
         },
         {
-            name: 'new_user_set',
+            name: 'new_user',
             proxy: NewUserSetProxy,
-            isEnabled: Config.get('proxies.new_user_set.enabled'),
+            isEnabled: Config.get('proxies.new_user.enabled'),
         },
     ];
 }
