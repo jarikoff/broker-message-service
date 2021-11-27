@@ -1,6 +1,6 @@
 ## Installation
 1. Copy `.env.example` to `.env`
-2. Run `docker-compose up -build`
+2. Run `docker-compose up --build`
 
 ## Playground
 1. Service are configured to receive message from exchanges that already exists (other service create it`s topic to send messages)
